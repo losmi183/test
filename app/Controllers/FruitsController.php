@@ -13,6 +13,16 @@ class FruitsController extends Fruit {
         return $fruits;
     }
 
+    public function take($number=9)
+    {
+        // Number of fruits to fetch
+        $number = 9;
+
+        $fruits = $this->limit($number);
+
+        return $fruits;
+    }
+
     public function show($id)
     {
         $fruit = $this->find($id);

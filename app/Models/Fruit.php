@@ -18,6 +18,20 @@ class Fruit extends Database {
         $stmt->execute();
         return $stmt->fetchAll();    
     }
+     
+    /** 
+    * Fetch number of resources
+    *
+    * @params $int
+    * @return array
+    */
+    protected function limit($number) 
+    { 
+        $stmt = $this->db->prepare("SELECT * FROM fruits LIMIT 0, :number");
+        $stmt->bindValue(':number', $number);
+        $stmt->execute();
+        return $stmt->fetchAll();    
+    }
 
 
     /** 

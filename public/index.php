@@ -15,14 +15,16 @@ $fruits = new FruitsController;
     <div class="container">
         <div class="row">
 
-            <?php foreach($fruits->index() as $fruit): ?>
+            <?php foreach($fruits->take() as $fruit): ?>
                 <div class="col-md-4">
                     <div class="box">
                         <div class="img-wrapper">
-                            <img class="img-fluid" src="img/<?php echo $fruit->image; ?>" alt="">
+                            <a href="product.php?id=<?php echo $fruit->id; ?>">
+                                <img class="img-fluid" src="img/<?php echo $fruit->image; ?>" alt="">
+                            </a>
                         </div>
                         <div class="content">
-                            <h4><?php echo $fruit->title; ?></h4>
+                            <h4><a href="product.php?id=<?php echo $fruit->id; ?>"><?php echo $fruit->title; ?></a></h4>
                             <p><?php echo short($fruit->description, 150); ?></p>
                         </div>
                     </div>
