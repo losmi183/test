@@ -12,7 +12,7 @@ class Comment extends Database {
     * @params void
     * @return array
     */
-    public function all() 
+    protected function all() 
     { 
         $stmt = $this->db->prepare("SELECT * FROM comments");
         $stmt->execute();
@@ -27,7 +27,7 @@ class Comment extends Database {
     * @return object
     *
     */
-    public function findByProduct($product_id) 
+    protected function findByProduct($product_id) 
     {        
         $stmt = $this->db->prepare("SELECT * FROM comments WHERE product_id=:product_id");
         $stmt->bindValue(':product_id', $product_id);
@@ -44,10 +44,10 @@ class Comment extends Database {
     * @return bool
     *
     */
-    public function create($name, $email, $text)
+    protected function create($product_id, $name, $email, $text)
     {
-        $stmt = $this->db->prepare("INSERT INTO comments (name,email,text) VALUES (:name,:email,:text)");
-        $result = $stmt->execute([':name' => $name, ':email' => $email, ':text' => $text]);
+        $stmt = $this->db->prepare("INSERT INTO comments (product_id, name,email,text) VALUES (:product_id, :name,:email,:text)");
+        $result = $stmt->execute([':product_id' => $product_id, ':name' => $name, ':email' => $email, ':text' => $text]);
         return $result;  
     }
 
@@ -61,7 +61,7 @@ class Comment extends Database {
     * @return bool
     *
     */
-    public function delete($ids)
+    protected function delete($ids)
     {
         if(is_array($ids)) {
             $result;

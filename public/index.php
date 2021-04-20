@@ -2,14 +2,14 @@
 
 require_once "../vendor/autoload.php";
 
+use App\Controllers\CommentsController;
 use App\Controllers\FruitsController;
-use App\Models\Comment;
 
-require_once "../views/includes/header.php";
+require_once "includes/header.php";
 
 $fruits = new FruitsController;
 
-$comments = new Comment;
+$comments = new CommentsController;
 
 ?>
 
@@ -41,7 +41,7 @@ $comments = new Comment;
 <section id="comments-list">
     <div class="container">
             
-            <?php foreach($comments->findByProduct(0) as $comment): ?>
+            <?php foreach($comments->display(0) as $comment): ?>
                 <div class="row comment border my-3">
                     <div class="col-sm-4 col-md-3 col-xl-2 bg-secondary text-white p-2">
                         <h6 class="name"><?php echo $comment->name; ?>XX</h6>
@@ -61,14 +61,15 @@ $comments = new Comment;
     <div class="container">
         <h3 class="mb-4">Leave your comment about company</h3>
 
-        <form action="">
+        <form action="commentCreate.php" method="POST">
+            <input type="hidden" name="product_id" value="0">
             <div class="form-group">
                 <label for="">Name</label>
                 <input type="text" class="form-control" name="name">
             </div>
             <div class="form-group">
                 <label for="">Email</label>
-                <input type="text" class="form-control" name="name">
+                <input type="text" class="form-control" name="email">
             </div>
             <div class="form-group">
                 <label for="">Text</label>
@@ -80,4 +81,4 @@ $comments = new Comment;
 </section>
 
 
-<?php require_once "../views/includes/footer.php"; ?>
+<?php require_once "includes/footer.php"; ?>
