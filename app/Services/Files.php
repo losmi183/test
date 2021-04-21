@@ -20,6 +20,8 @@ class Files {
 
     public static function delete($path)
     {
-        
+        $result = unlink(self::$target_dir . $path);
+
+        return $result;
     }
 }

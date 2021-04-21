@@ -11,3 +11,18 @@
 </head>
 <body>
     
+<section id="login">
+    <div class="container">
+        <form action="login.php" method="POST">
+            
+            <label for="">Email</label>
+            <input type="text" name="email">
+
+            <label for="">Password</label>
+            <input type="password" name="password">
+
+            <button class="btn btn-primary">Sign in</button>
+
+        </form>
+    </div>
+</section>

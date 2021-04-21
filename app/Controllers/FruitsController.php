@@ -42,6 +42,13 @@ class FruitsController extends Fruit {
         return $result;
     }
 
+    public function saveEdit($id, $title, $description, $image)
+    {
+        $result = $this->update($id, $title, $description, $image);
+
+        return $result;
+    }
+
     public function destroy($id)
     {
         $result = $this->delete($id);
