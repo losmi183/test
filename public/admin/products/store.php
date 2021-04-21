@@ -8,9 +8,10 @@ require_once "../../../vendor/autoload.php";
 
 require_once "../../vars.php";
 
-use App\Controllers\FruitsController;
 use App\Services\Files;
+use App\Services\Redirect;
 use App\Services\Notification;
+use App\Controllers\FruitsController;
 
 if(isset($_POST)) {
 
@@ -20,22 +21,16 @@ if(isset($_POST)) {
 
     // Validation
     if ($name == '') {
-        Notification::error('Name field can not be empty');
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
+        Redirect::backWithError('Name field can not be empty');
     }
 
     if (strlen($name) > 20) {
-        Notification::error('Name field can not be longer then 20 chars');
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
+        Redirect::backWithError('Name field can not be longer then 20 chars');
     }
 
     // Validation
     if ($description == '') {
-        Notification::error('Description field can not be empty');
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
+        Redirect::backWithError('Description field can not be empty');
     }
 
 
@@ -46,6 +41,8 @@ if(isset($_POST)) {
     $fruit = new FruitsController;
 
     $fruit->store($name, $description, $image);
+
+    Notification::success('Product Added');
 
     header('Location: ' . ADMIN . '/products/index.php');
 } 

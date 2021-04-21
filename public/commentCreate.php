@@ -4,6 +4,7 @@ session_start();
 
 require_once "../vendor/autoload.php";
 
+use App\Services\Redirect;
 use App\Services\Notification;
 use App\Controllers\CommentsController;
 
@@ -16,20 +17,13 @@ if(isset($_POST)) {
 
     // Input basic validation
     if ($name == '') {
-        Notification::error('Comment Name can not be empty');
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        echo 'DDDD';
-        exit;
+        Redirect::backWithError('Comment Name can not be empty');
     }
     if ($email == '') {
-        Notification::error('Comment Email can not be empty');
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
+        Redirect::backWithError('Comment Email can not be empty');
     }
     if ($text == '') {
-        Notification::error('Comment Text can not be empty');
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
+        Redirect::backWithError('Comment Text can not be empty');
     }
 
     $comment = new CommentsController;
