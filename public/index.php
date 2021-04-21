@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once "../vendor/autoload.php";
 
 use App\Controllers\CommentsController;
@@ -40,11 +42,12 @@ $comments = new CommentsController;
 
 <section id="comments-list">
     <div class="container">
-            
+    <h2>All comments</h2>
+
             <?php foreach($comments->display(0) as $comment): ?>
                 <div class="row comment border my-3">
                     <div class="col-sm-4 col-md-3 col-xl-2 bg-secondary text-white p-2">
-                        <h6 class="name"><?php echo $comment->name; ?>XX</h6>
+                        <h6 class="name"><?php echo $comment->name; ?></h6>
                         <p class="email"><?php echo $comment->email; ?></p>
                         <p class="date"><?php echo formatDate($comment->date); ?></p>
                     </div>

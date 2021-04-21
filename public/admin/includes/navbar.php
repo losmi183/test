@@ -29,6 +29,15 @@
     
     <?php endif; ?>
 
+    
+    <!-- Success Message  -->
+    <?php if(isset($_SESSION['success'])) : ?>
+
+    <div class="alert alert-<?php echo $_SESSION["color"] ?>"><?php echo $_SESSION["success"] ?></div>
+    <?php unset($_SESSION['success']); ?>
+
+    <?php endif; ?>
+
 
   </div>
 </section>
