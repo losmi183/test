@@ -19,9 +19,10 @@ if(isset($_POST))
 
     if ($userdata = $user->login($email, $password) )
     {
-        $_SESSION["userdata"] = $userdata;
-
-        // print_r($_SESSION["userdata"]);
+        $_SESSION["email"] = $userdata->email;
+        $_SESSION["username"] = $userdata->username;
+        $_SESSION["role"] = $userdata->role;
+        $_SESSION["logged"] = $userdata->logged;
 
         header('Location: /admin/index.php');
     }

@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+// First check if not logged in
+if(! $_SESSION["logged"])  { header('Location: /'); }
+
 require_once "../../../vendor/autoload.php";
 
 require_once "../../vars.php";

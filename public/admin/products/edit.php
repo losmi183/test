@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+// First check if not logged in
+if(! $_SESSION["logged"])  { header('Location: /'); }
+
 use App\Controllers\FruitsController;
 
 if(isset($_GET['id']))

@@ -1,11 +1,8 @@
 <?php
 
 session_start();
-
-if(! var_dump($_SESSION["userdata"]) )
-{
-    header("Location: /index.php");
-}
+// First check if not logged in
+if(! $_SESSION["logged"])  { header('Location: /'); }
 
 require_once "../../vendor/autoload.php";
 

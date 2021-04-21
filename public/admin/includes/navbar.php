@@ -10,6 +10,9 @@
             <li class="nav-item"><a class="nav-link" href="<?php echo ADMIN . '/products/index.php'; ?>">Products</a></li>
             <li class="nav-item"><a class="nav-link" href="<?php echo ADMIN . '/comments/index.php'; ?>">Comments</a></li>
           </ul>
+          <ul class="navbar-nav mr-left">
+            <li class="nav-item"><a class="nav-link" href="<?php echo ADMIN . '/logout.php'; ?>">Logout</a></li>
+          </ul>
       
         </div>
     </div>
