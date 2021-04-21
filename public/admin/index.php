@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+
+if(! var_dump($_SESSION["userdata"]) )
+{
+    header("Location: /index.php");
+}
+
 require_once "../../vendor/autoload.php";
 
 use App\Controllers\CommentsController;

@@ -1,17 +1,34 @@
 <?php
+// Start the session
+session_start();
 
 require_once "../vendor/autoload.php";
 
-use App\Controllers\CommentsController;
+use App\Models\User;
 use App\Controllers\FruitsController;
+use App\Controllers\CommentsController;
 
 if(isset($_POST))
 {
+    
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+
     $user = new User;
-    $user->login
+
+    if ($userdata = $user->login($email, $password) )
+    {
+        $_SESSION["userdata"] = $userdata;
+
+        // print_r($_SESSION["userdata"]);
+
+        header('Location: /admin/index.php');
+    }
+    else {
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+
 }
 else
 {
@@ -19,16 +36,7 @@ else
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 
-
-
-require_once "includes/header.php";
-
-$fruits = new FruitsController;
-
-$comments = new CommentsController;
-
 ?>
 
 
 
-<?php require_once "includes/footer.php"; ?>
