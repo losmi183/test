@@ -42,4 +42,11 @@ class FruitsController extends Fruit {
         return $result;
     }
 
+    public function destroy($id)
+    {
+        $result = $this->delete($id);
+
+        return $result;
+    }
+
 }

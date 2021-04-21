@@ -28,4 +28,11 @@ class CommentsController extends Comment {
         return $result;        
     }
 
+    public function approveComment($id, $approved)
+    {
+        $result = $this->approve($id, $approved);
+
+        return $result;        
+    }
+
 }

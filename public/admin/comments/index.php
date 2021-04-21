@@ -23,6 +23,7 @@ require_once "../includes/navbar.php";
             <th>Name</th>
             <th>Email</th>
             <th>Text</th>
+            <th>Approved</th>
         </tr>
         <?php foreach($comments->index() as $comment): ?>
 
@@ -32,6 +33,15 @@ require_once "../includes/navbar.php";
                 <td><?php echo $comment->name; ?></td>
                 <td><?php echo $comment->email; ?></td>
                 <td><?php echo $comment->text; ?></td>
+                <td>
+                    <form action="approve.php" method="POST">
+                        <input type="hidden" name="id" value="<?php echo $comment->id; ?>">
+                        <select name="approved" onchange="this.form.submit()">
+                            <option <?php echo $comment->approved == 1 ? 'selected' : ''; ?> value="1">Approved</option>
+                            <option <?php echo $comment->approved == 0 ? 'selected' : ''; ?> value="0">Not Approved</option>
+                        </select>
+                    </form>
+                </td>
             </tr>
 
         <?php endforeach; ?>

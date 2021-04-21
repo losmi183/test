@@ -29,7 +29,7 @@ class Comment extends Database {
     */
     protected function findByProduct($product_id) 
     {        
-        $stmt = $this->db->prepare("SELECT * FROM comments WHERE product_id=:product_id");
+        $stmt = $this->db->prepare("SELECT * FROM comments WHERE product_id=:product_id AND approved = 1");
         $stmt->bindValue(':product_id', $product_id);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -77,6 +77,20 @@ class Comment extends Database {
             return $result;        
         }
     }
+
+
+    /*
+    *
+    * Approve comment
+    * 
+    */
+    protected function approve($id, $approved)
+    {
+        $stmt = $this->db->prepare("UPDATE comments SET approved=:approved WHERE id=:id");
+        $result = $stmt->execute(['approved' => $approved, 'id' =>$id]);
+        return $result;        
+    }
+
 
 
 } 
