@@ -17,3 +17,18 @@
         </div>
     </div>
 </nav>
+
+<section id="notify">
+  <div class="container">
+
+    <!-- Error Message  -->
+    <?php if(isset($_SESSION['error'])) : ?>
+
+      <div class="alert alert-<?php echo $_SESSION["color"] ?>"><?php echo $_SESSION["error"] ?></div>
+      <?php unset($_SESSION['error']); ?>
+    
+    <?php endif; ?>
+
+
+  </div>
+</section>

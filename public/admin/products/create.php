@@ -23,7 +23,7 @@ require_once "../includes/navbar.php";
 
     <form action="store.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="">Name</label>
+            <label for="">Name (max 20 chars)</label>
             <input type="text" class="form-control" name="name">
         </div>
         <div class="form-group">
