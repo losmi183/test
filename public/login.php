@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Services\Notification;
 use App\Controllers\FruitsController;
 use App\Controllers\CommentsController;
+use App\Services\Redirect;
 
 if(isset($_POST))
 {
@@ -17,14 +18,10 @@ if(isset($_POST))
 
     // Basic Input validation
     if ($email == '') {
-        Notification::error('Email can not be empty');
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
+        Redirect::backWithError('Email can not be empty');
     }
     if ($password == '') {
-        Notification::error('Password can not be empty');
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
+        Redirect::backWithError('Password can not be empty');
     }
 
 
